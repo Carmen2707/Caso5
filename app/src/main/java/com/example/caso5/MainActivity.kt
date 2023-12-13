@@ -1,11 +1,12 @@
 package com.example.caso5
 
-import android.annotation.SuppressLint
+//import com.example.caso5.ComunidadProvider.Companion.listaComunidad
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,7 +14,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.caso5.ComunidadProvider.Companion.listaComunidad
 import com.example.caso5.adapter.ComunidadAdapter
 import com.example.caso5.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -57,6 +57,12 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        //login
+        this.onBackPressedDispatcher.addCallback(this,object:OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                finish()
+            }
+        })
     }
 
 
@@ -85,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     private fun recargar() {
         lista.clear()
         lista.addAll(miDAO.cargarLista(this))
@@ -143,5 +150,6 @@ class MainActivity : AppCompatActivity() {
     private fun display(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
+
 
 }
