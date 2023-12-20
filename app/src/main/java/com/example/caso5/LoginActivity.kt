@@ -6,14 +6,18 @@ import android.os.Bundle
 
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.caso5.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var prefs:SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen=installSplashScreen()
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,6 +32,35 @@ class LoginActivity : AppCompatActivity() {
             if (login(email,password)) goToMain()
             guardarPreferencias(email,password)
         }
+        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener{
+            override fun onTransitionStarted(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int
+            ) {
+            }
+
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
+            }
+
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                binding.motionLayout.visibility=View.GONE
+            }
+
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout?,
+                triggerId: Int,
+                positive: Boolean,
+                progress: Float
+            ) {
+            }
+
+        })
     }
     //TextUtils y Patterns nos ofrece la posibilidad de validar las reglas básicas de una dirección de email correcta.
     private fun eMailValido(email:String):Boolean{
