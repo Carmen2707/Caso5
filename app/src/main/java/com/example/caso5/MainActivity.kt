@@ -19,7 +19,7 @@ import com.example.caso5.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
 lateinit var miDAO: ComunidadDAO
-lateinit var lista: MutableList<Comunidad>
+lateinit var lista: List<Comunidad>
 private lateinit var binding: ActivityMainBinding
 private lateinit var adapter: ComunidadAdapter
 private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -93,13 +93,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun recargar() {
-        lista.clear()
-        lista.addAll(miDAO.cargarLista(this))
+       // lista.clear()
+        lista.plus(miDAO.cargarLista(this))
         adapter.notifyDataSetChanged()
     }
 
     private fun limpiar() {
-        lista.clear()
+        //lista.clear()
+        lista= emptyList()
         adapter.notifyDataSetChanged()
     }
 
@@ -115,10 +116,14 @@ class MainActivity : AppCompatActivity() {
                         { _, _ ->
 
                             miDAO.eliminarComunidad(this, comunidadAfectada)
-                            lista.remove(comunidadAfectada)
+                            lista=lista.minus(comunidadAfectada)
                             display("Se ha eliminado ${comunidadAfectada.nombre}")
-                            adapter.notifyItemRemoved(item.groupId)
-                            adapter.notifyItemRangeChanged(item.groupId, lista.size)
+                           /* adapter.notifyItemRemoved(item.groupId)
+                            adapter.notifyItemRangeChanged(item.groupId, lista.size)*/
+                            adapter.updateList(lista)
+                            binding.rvComunidades.adapter=ComunidadAdapter(lista){ comunidad ->
+                            onItemSelected(comunidad)
+                            }
 
 
                         }.create()
