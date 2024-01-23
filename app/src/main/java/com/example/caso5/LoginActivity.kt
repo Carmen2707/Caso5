@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
         prefs=getSharedPreferences("app", MODE_PRIVATE)
         establecerValoresSiExisten()
         binding.btnLogin.setOnClickListener{
-            val email=binding.etEmail.text.toString()
-            val password=binding.etPassword.text.toString()
+            val email=binding.etEmail.editText?.text.toString()
+            val password=binding.etPassword.editText?.text.toString()
             if (login(email,password)) goToMain()
             guardarPreferencias(email,password)
         }
@@ -109,8 +109,8 @@ class LoginActivity : AppCompatActivity() {
         val password=prefs.getString("password","")
         val recordar=prefs.getBoolean("recordar",false)
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
-            binding.etEmail.setText(email)
-            binding.etPassword.setText(password)
+            binding.etEmail.editText?.setText(email)
+            binding.etPassword.editText?.setText(password)
             binding.cbRecordar.isChecked=recordar
         }
     }

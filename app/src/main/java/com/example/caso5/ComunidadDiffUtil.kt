@@ -2,7 +2,7 @@ package com.example.caso5
 
 import androidx.recyclerview.widget.DiffUtil
 
-class ComunidadDiffUtil(private val oldList:MutableList<Comunidad>, private val newList:MutableList<Comunidad>):DiffUtil.Callback() {
+class ComunidadDiffUtil(private val oldList:List<Comunidad>, private val newList:List<Comunidad>):DiffUtil.Callback() {
     override fun getOldListSize(): Int =oldList.size
 
 

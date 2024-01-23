@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 
 class ActivityDos : AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class ActivityDos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2)
         val nombre = intent.getStringExtra("nombre")
-        val etNombre = findViewById<EditText>(R.id.etNombre)
+        val etNombre = findViewById<TextInputLayout>(R.id.etNombre)
         etNombre.hint = nombre
 
         val imagen = intent.getIntExtra("imagen", 0)
@@ -29,7 +30,7 @@ class ActivityDos : AppCompatActivity() {
 
 
             val intent = Intent()
-            val name = etNombre.text.toString()
+            val name = etNombre.editText?.text.toString()
             miDAO.actualizarNombre(this, comunidad, name)
             intent.putExtra("nombre", name)
 

@@ -18,7 +18,12 @@ class ComunidadDAO {
             val columnas = arrayOf(
                 ComunidadContract.Companion.Entrada.COLUMNA_ID,
                 ComunidadContract.Companion.Entrada.COLUMNA_NOMBRE,
-                ComunidadContract.Companion.Entrada.COLUMNA_IMAGEN
+                ComunidadContract.Companion.Entrada.COLUMNA_IMAGEN,
+                ComunidadContract.Companion.Entrada.COLUMNA_HABITANTES,
+                ComunidadContract.Companion.Entrada.COLUMNA_CAPITAL,
+                ComunidadContract.Companion.Entrada.COLUMNA_LATITUD,
+                ComunidadContract.Companion.Entrada.COLUMNA_LONGITUD,
+                ComunidadContract.Companion.Entrada.COLUMNA_ICONO
             )
 
             c = db.query(
@@ -28,7 +33,11 @@ class ComunidadDAO {
             res = mutableListOf()
             // Leer resultados del cursor e insertarlos en la lista
             while (c.moveToNext()) {
-                val nueva = Comunidad(c.getInt(0), c.getString(1), c.getInt(2))
+                val nueva = Comunidad(
+                    c.getInt(0), c.getString(1), c.getInt(2),
+                    c.getInt(3), c.getString(4), c.getDouble(5),
+                    c.getDouble(6), c.getInt(7)
+                )
                 res.add(nueva)
             }
         } finally {
@@ -39,17 +48,16 @@ class ComunidadDAO {
 
     fun actualizarNombre(context: Context?, comunidad: Comunidad, name: String) {
         val db = DBOpenHelper.getInstance(context)!!.writableDatabase
-        /* db.execSQL(
-             "UPDATE ${ComunidadContract.Companion.Entrada.NOMBRE_TABLA} " +
-                     "SET ${ComunidadContract.Companion.Entrada.COLUMNA_NOMBRE} = '$name', " +
-                     "${ComunidadContract.Companion.Entrada.COLUMNA_IMAGEN} = ${comunidad.imagen} " +
-                     "WHERE ${ComunidadContract.Companion.Entrada.COLUMNA_ID} = ${comunidad.id};"
 
-         )*/
         val values = ContentValues()
         values.put(ComunidadContract.Companion.Entrada.COLUMNA_ID, comunidad.id)
         values.put(ComunidadContract.Companion.Entrada.COLUMNA_NOMBRE, name)
         values.put(ComunidadContract.Companion.Entrada.COLUMNA_IMAGEN, comunidad.imagen)
+        values.put(ComunidadContract.Companion.Entrada.COLUMNA_HABITANTES, comunidad.habitantes)
+        values.put(ComunidadContract.Companion.Entrada.COLUMNA_CAPITAL, comunidad.capital)
+        values.put(ComunidadContract.Companion.Entrada.COLUMNA_LONGITUD, comunidad.longitud)
+        values.put(ComunidadContract.Companion.Entrada.COLUMNA_LATITUD, comunidad.latitud)
+        values.put(ComunidadContract.Companion.Entrada.COLUMNA_ICONO, comunidad.icono)
 
         db.update(
             ComunidadContract.Companion.Entrada.NOMBRE_TABLA,

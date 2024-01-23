@@ -13,6 +13,11 @@ class ComunidadContract {
                 val COLUMNA_ID = "id"
                 val COLUMNA_NOMBRE = "nombre"
                 val COLUMNA_IMAGEN = "imagen"
+                val COLUMNA_HABITANTES = "habitantes"
+                val COLUMNA_CAPITAL = "capital"
+                val COLUMNA_LATITUD = "latitud"
+                val COLUMNA_LONGITUD = "longitud"
+                val COLUMNA_ICONO = "icono"
             }
 
         }

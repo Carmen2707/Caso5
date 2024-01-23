@@ -68,6 +68,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onItemSelected(comunidad: Comunidad) {
         Toast.makeText(this, "Yo soy de ${comunidad.nombre}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MapsActivity::class.java)
+        intent.putExtra("latitud", comunidad.latitud)
+        intent.putExtra("longitud", comunidad.longitud)
+        startActivity(intent)
     }
 
     //menu
