@@ -18,6 +18,7 @@ class ComunidadContract {
                 val COLUMNA_LATITUD = "latitud"
                 val COLUMNA_LONGITUD = "longitud"
                 val COLUMNA_ICONO = "icono"
+                val COLUMNA_URI = "uri"
             }
 
         }
