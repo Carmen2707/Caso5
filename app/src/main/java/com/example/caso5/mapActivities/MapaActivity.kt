@@ -1,4 +1,4 @@
-package com.example.caso5
+package com.example.caso5.mapActivities
 
 import android.content.Context
 import android.os.Bundle

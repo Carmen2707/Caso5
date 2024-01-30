@@ -1,12 +1,10 @@
-package com.example.caso5
+package com.example.caso5.imageActivities
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.Manifest
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
@@ -18,10 +16,10 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.caso5.ComunidadDAO
 import com.example.caso5.databinding.ActivityFotoBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
-import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -42,7 +40,7 @@ class FotoActivity:AppCompatActivity() {
             startCamera()
         }else{
             ActivityCompat.requestPermissions(
-                this,REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
         }
         binding.btnTakePhoto.setOnClickListener { takePhoto() }

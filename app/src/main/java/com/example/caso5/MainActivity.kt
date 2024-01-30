@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.caso5.adapter.ComunidadAdapter
 import com.example.caso5.databinding.ActivityMainBinding
+import com.example.caso5.imageActivities.FotoActivity
+import com.example.caso5.imageActivities.ImageActivity
+import com.example.caso5.mapActivities.MapsActivity
 import com.google.android.material.snackbar.Snackbar
 
 lateinit var miDAO: ComunidadDAO
@@ -150,8 +153,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             2 ->{
-                val intent=Intent(this,FotoActivity::class.java)
+                val intent=Intent(this, FotoActivity::class.java)
                 intent.putExtra("comunidad", comunidadAfectada.nombre)
+                intent.putExtra("id",comunidadAfectada.id)
+                this.startActivity(intent)
+            }
+            3->{
+                val intent=Intent(this,ImageActivity::class.java)
                 intent.putExtra("id",comunidadAfectada.id)
                 this.startActivity(intent)
             }

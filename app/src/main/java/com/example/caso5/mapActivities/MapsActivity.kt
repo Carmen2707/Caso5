@@ -1,8 +1,9 @@
-package com.example.caso5
+package com.example.caso5.mapActivities
 
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.caso5.R
 import com.example.caso5.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
